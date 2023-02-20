@@ -17,7 +17,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ConnectButton } from "web3uikit";
 import Link from "next/link";
 import classes from ".././styles/myMusic.module.css";
-import { MdLibraryMusic } from "react-icons/md";
+import { TfiThought } from "react-icons/all";
+// import { MdLibraryMusic } from "react-icons/md";
+
 import { marketplaceAddress } from "./../../backend/config";
 import NFTMarketplace from "./../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
 
@@ -79,9 +81,16 @@ function Mymusic({ setSongLink }) {
       <div className="header_main">
         <div className="header_left">
           <Link href="/">
-            <img src="/images/logo2.png" />
+            <img src="/images/logo.png" style={{ height: "60px" }} />
           </Link>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: "black",
+              // marginLeft: "15px",
+            }}
+          >
             <h1>PixiePop</h1>
           </div>
         </div>
@@ -109,7 +118,7 @@ function Mymusic({ setSongLink }) {
             </Link>
             <Link href="/mymusic">
               <div className="side_mini active">
-                <MdLibraryMusic />
+                <TfiThought />
                 <p>Owned Thoughts</p>
               </div>
             </Link>

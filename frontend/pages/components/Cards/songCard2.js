@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-
-// import classes from "./../../../styles/songCard.module.css";
 import classes from "./../../../styles/songCard.module.css";
-import { BsPlayCircle } from "react-icons/bs";
 import Link from "next/link";
 import { marketplaceAddress } from "./../../../../backend/config";
 import NFTMarketplace from "./../../../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
@@ -92,7 +89,6 @@ function SongCard({ songData, setSongLink }) {
       <Link href={`/songs/${songData.tokenId}`}>
         <img src={songData.image} alt="cover" />
       </Link>{" "}
-      <BsPlayCircle onClick={handleSongPlay} className={classes.playIcon} />
       <div className={classes.song_data}>
         <Link href={`/songs/${songData.tokenId}`}>
           <h3>{songData?.name}</h3>

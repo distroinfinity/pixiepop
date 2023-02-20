@@ -3,7 +3,9 @@ import classes from "../styles/dashboard.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
-import { MdLibraryMusic } from "react-icons/md";
+import { TfiThought } from "react-icons/all";
+// import { MdLibraryMusic } from "react-icons/md";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ConnectButton } from "web3uikit";
 import Link from "next/link";
@@ -76,9 +78,16 @@ function Dashboard({ setSongLink }) {
       <div className="header_main">
         <div className="header_left">
           <Link href="/">
-            <img src="/images/logo2.png" />
+            <img src="/images/logo.png" style={{ height: "60px" }} />
           </Link>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: "black",
+              // marginLeft: "15px",
+            }}
+          >
             <h1>PixiePop</h1>
           </div>
         </div>
@@ -106,7 +115,7 @@ function Dashboard({ setSongLink }) {
             </Link>
             <Link href="/mymusic">
               <div className="side_mini">
-                <MdLibraryMusic />
+                <TfiThought />
                 <p>Owned Thoughts</p>
               </div>
             </Link>

@@ -15,7 +15,7 @@
 .song1 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .song_left {
   flex: 0.2;
@@ -39,12 +39,12 @@
   text-align: left;
 }
 .song_right {
-  flex: 0.1;
+  flex: 0.2;
   margin-right: 20px;
 }
 .song_left img {
-  height: 200px;
-  width: 250px;
+  height: 512px;
+  width: 512px;
 }
 .artist_fans {
   text-align: left;

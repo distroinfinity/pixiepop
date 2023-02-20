@@ -4,7 +4,8 @@ import { AiOutlineHome } from "react-icons/ai";
 import { Outlet } from "react-router-dom";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
-import { MdLibraryMusic } from "react-icons/md";
+import { TfiThought } from "react-icons/tfi";
+// import { MdLibraryMusic } from "react-icons/md";
 // import Logo from "./../assets/logo2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { Link, useLocation } from "react-router-dom";
@@ -84,9 +85,16 @@ function Home({ setSongLink }) {
       <div className="header_main">
         <div className="header_left">
           <Link href="/">
-            <img src="/images/logo2.png" />
+            <img src="/images/logo.png" style={{ height: "60px" }} />
           </Link>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: "black",
+              // marginLeft: "15px",
+            }}
+          >
             <h1>PixiePop</h1>
           </div>
         </div>
@@ -114,7 +122,7 @@ function Home({ setSongLink }) {
             </Link>
             <Link href="/mymusic">
               <div className="side_mini">
-                <MdLibraryMusic />
+                <TfiThought />
                 <p>Owned Thoughts</p>
               </div>
             </Link>
@@ -130,7 +138,7 @@ function Home({ setSongLink }) {
             <h1>
               gm, <span className="grad">dreamers</span> 💭
             </h1>
-            <h4 className="textt">Freshly Minted Thoughts</h4>
+            <h2 className="textt">Freshly Minted Thoughts</h2>
 
             {nfts.length == 0 && (
               <h5 style={{ textAlign: "center", width: "100%" }}>

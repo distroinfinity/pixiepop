@@ -9,7 +9,9 @@ import { BiSearch } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
 import { Outlet } from "react-router-dom";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-import { MdLibraryMusic } from "react-icons/md";
+import { TfiThought } from "react-icons/all";
+// import { MdLibraryMusic } from "react-icons/md";
+
 import { IoPersonOutline } from "react-icons/io5";
 import { useRouter } from "next/router";
 // import Logo from "./../assets/logo2.png";
@@ -116,22 +118,20 @@ function Artist({ setSongLink, songLink }) {
       <div className="header_main">
         <div className="header_left">
           <Link href="/">
-            <img src="/images/logo2.png" />
+            <img src="/images/logo.png" style={{ height: "60px" }} />
           </Link>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: "black",
+              // marginLeft: "15px",
+            }}
+          >
             <h1>PixiePop</h1>
           </div>
         </div>
-        <div className="header_center">
-          {/* <div className="search_div">
-            <input
-              className="search_input"
-              type="text"
-              placeholder="Search..."
-            />
-            <BiSearch />
-          </div> */}
-        </div>
+        <div className="header_center"></div>
         <div className="header_right">
           <ConnectButton moralisAuth={false} />
         </div>
@@ -152,7 +152,7 @@ function Artist({ setSongLink, songLink }) {
           </Link>
           <Link href="/mymusic">
             <div className="side_mini">
-              <MdLibraryMusic />
+              <TfiThought />
               <p>Owned Thoughts</p>
             </div>
           </Link>

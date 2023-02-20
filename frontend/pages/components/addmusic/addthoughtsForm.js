@@ -4,10 +4,9 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-
 import { marketplaceAddress } from "../../../../backend/config";
 import NFTMarketplace from "../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
-
+import { BallTriangle } from "react-loader-spinner";
 import { PROJECTID, PROJECTSECRET } from "../../../api_key";
 import { create as ipfsHttpClient } from "ipfs-http-client";
 
@@ -32,6 +31,7 @@ function AddThoughtsForm({ setLoadingState }) {
   const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
   const [finalImage, setFinalImage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -40,7 +40,7 @@ function AddThoughtsForm({ setLoadingState }) {
       <div
         style={{
           display: "flex",
-          marginBottom: "30px",
+          marginBottom: "20px",
           justifyContent: "center",
         }}
       >
@@ -136,6 +136,7 @@ function AddThoughtsForm({ setLoadingState }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFinalImage(false);
+    setLoading(true);
     const response = await fetch("/api/predictions", {
       method: "POST",
       headers: {
@@ -168,6 +169,7 @@ function AddThoughtsForm({ setLoadingState }) {
         console.log("prediction output", prediction.output[0]);
         setCover(prediction.output[0]);
         setFinalImage(true);
+        setLoading(false);
         // code to download the generated image
         // const url = prediction.output[0];
         // await fetch(url)
@@ -202,7 +204,7 @@ function AddThoughtsForm({ setLoadingState }) {
           className={classes.inputtt}
         />
       </div>
-      {/* {finalImage && ( */}
+      {finalImage && (
         <>
           <div className={classes.input_div}>
             <label>Name</label>
@@ -232,16 +234,42 @@ function AddThoughtsForm({ setLoadingState }) {
             />
           </div>
         </>
-      {/* // )} */}
-      {finalImage && (
-        <button onClick={listNFTForSale} className={classes.createBtn}>
-          Create NFT
-        </button>
       )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ marginBottom: "10px" }}>
+          {loading && (
+            <BallTriangle
+              height={100}
+              width={100}
+              radius={5}
+              color="black"
+              ariaLabel="ball-triangle-loading"
+              wrapperClass={{}}
+              wrapperStyle=""
+              visible={true}
+            />
+          )}
+        </div>
+        {!loading && (
+          <div>
+            {finalImage && (
+              <button onClick={listNFTForSale} className={classes.createBtn}>
+                Create NFT
+              </button>
+            )}
 
-      <button onClick={handleSubmit} className={classes.createBtn}>
-        Generate Art
-      </button>
+            <button onClick={handleSubmit} className={classes.createBtn}>
+              Generate Art
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

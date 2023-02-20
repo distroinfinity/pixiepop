@@ -5,7 +5,8 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
 import { ConnectButton } from "web3uikit";
 import { useEffect, useState } from "react";
-import { MdLibraryMusic } from "react-icons/md";
+import { TfiThought } from "react-icons/tfi";
+// import { MdLibraryMusic } from "react-icons/md";
 import AddThoughtsForm from "./components/addmusic/addthoughtsForm";
 import { useRouter } from "next/router";
 import Loader from "./components/loader";
@@ -22,9 +23,16 @@ function AddNewThoughts() {
       <div className="header_main">
         <div className="header_left">
           <Link href="/">
-            <img src="/images/logo2.png" />
+            <img src="/images/logo.png" style={{ height: "60px" }} />
           </Link>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              color: "black",
+              // marginLeft: "15px",
+            }}
+          >
             <h1>PixiePop</h1>
           </div>
         </div>
@@ -52,7 +60,7 @@ function AddNewThoughts() {
             </Link>
             <Link href="/mymusic">
               <div className="side_mini">
-                <MdLibraryMusic />
+                <TfiThought />
                 <p>Owned Thoughts</p>
               </div>
             </Link>
@@ -65,7 +73,7 @@ function AddNewThoughts() {
           </div>
 
           <div className="home_right">
-            <p style={{ fontSize: "49px", marginTop: "10px" }}>
+            <p style={{ fontSize: "49px", marginTop: "0px" }}>
               Spill your thoughts out...
             </p>
             <AddThoughtsForm setLoadingState={setLoadingState} />
