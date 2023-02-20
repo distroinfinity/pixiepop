@@ -1,0 +1,48 @@
+.dashboard_nfts{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+.buy_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:150px;
+        background-color: rgb(27, 27, 27);
+           color:white;
+    margin-bottom: 20px;
+    padding:10px 0px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.buy_btn:hover{
+    border: 1px solid black;
+    color:black;
+    background-color: transparent;
+}
+.events_div{
+    position: relative;
+}
+.createEvent{
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    width:150px;
+        background-color: rgb(27, 27, 27);
+           color:white;
+    margin-bottom: 20px;
+    padding:10px 0px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer; 
+    position: absolute;
+    right:20px;
+    top:10px;
+}
+.createEvent:hover{
+    border: 1px solid white;
+    color:white;
+    background-color: transparent;
+}

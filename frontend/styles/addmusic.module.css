@@ -1,0 +1,45 @@
+.addMusic{
+    color:white;
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+.input_div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 30px;
+}
+.input_div label{
+    flex:0.25;
+    color:white;
+    text-align: left;
+    margin-right: 20px;
+    font-size: 18px;
+}
+.inputt{
+    width:100%;
+    height: 30px;
+    flex:0.75;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+    outline: none;
+}
+.inputt::placeholder{
+    font-size: 14px;
+}
+.createBtn{
+    width:300px;
+    padding:10px 0px;
+    font-size: 18px;
+    background-color: rgb(43, 43, 43);
+    color:white;
+}
+.createBtn:hover{
+    background-color: white;
+    color:rgb(29, 29, 29);
+    cursor: pointer;
+}

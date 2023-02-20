@@ -1,0 +1,20 @@
+.songlist_main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  padding-right: 40px;
+  border-bottom: 1px solid rgb(50, 50, 50);
+}
+.song_img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  object-position: center;
+  background-repeat: no-repeat;
+}
+.play {
+  color: #1db954;
+  font-size: 30px;
+  cursor: pointer;
+}

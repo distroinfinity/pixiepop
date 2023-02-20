@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.songpage_main{
+    background-color: rgb(10, 10, 10);
+    padding:20px;
+    border-radius: 5px;
+    height: 90vh;
+    font-family: "poppins",sans-serif;
+}
+.songpage_main h1{
+    text-align: left;
+    color:rgb(202, 202, 202);
+    margin-bottom: 20px;
+    
+}
+.song1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.song_left{
+    flex:0.2;
+    text-align: left;
+}
+.song_center{
+    flex:0.6;
+    padding:0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.labelss{
+    color:rgb(202, 202, 202);
+    line-height: 30px;
+    text-align: left;
+}
+.details{
+    color:rgb(202, 202, 202);
+    line-height: 30px;
+    text-align: left;
+}
+.song_right{
+    flex:0.1;
+    margin-right: 20px;
+}
+.song_left img{
+    height: 200px;
+    width:250px;
+}
+.artist_fans{
+text-align: left;
+    padding:20px 20px;
+    color:white;
+}
+.songs_table{
+    margin-top: 30px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+.buy_nft{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:150px;
+    margin-bottom: 20px;
+    padding:10px 0px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.buy_nft:hover{
+    background-color: rgb(27, 27, 27);
+    color:white;
+    border: 1px solid white;
+}
+.play_btn{
+    background-color:#1db954;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    width:150px;
+    margin-bottom: 20px;
+    padding:10px 0px;
+    font-size: 16px;
+    cursor: pointer;
+       border: none;
+}
+
+.buy_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:150px;
+        background-color: rgb(27, 27, 27);
+           color:white;
+    margin-bottom: 20px;
+    padding:10px 0px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.buy_btn:hover{
+    border: 1px solid black;
+    color:black;
+    background-color: transparent;
+}
+
+.artist_main{
+background: rgb(126,126,126);
+background: linear-gradient(180deg, rgba(90,90,90,1) 0%, rgba(71,67,67,1) 25%, rgba(48,46,46,1) 45%, rgba(10,10,10,1) 100%);
+min-height: 91vh;
+}
+.img_div{
+    width:100%;
+    position: relative;
+    height: 400px;
+    
+}
+.img_div img{
+    width:100%;
+    height:400px;
+    object-fit: cover;
+    object-position: center;
+    
+}
+.img_div h1{
+position: absolute;
+top:250px;
+color:white;
+font-size: 60px;
+left:30px;
+font-family: 'Poppins', sans-serif;
+}
+.artist_songs{
+    text-align: left;
+    padding:20px 20px;
+    color:white;
+}
+.songs_table{
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+.play_icon{
+    color:#1DB954;
+    font-size: 50px;
+}
+.play_icon:hover{
+    cursor: pointer;
+}
+.artist_fans{
+text-align: left;
+    padding:20px 20px;
+    color:white;
+}
+.songs_table::-webkit-scrollbar{
+  width:5px;
+}
+.songs_table::-webkit-scrollbar-thumb{
+  background-color: #282c34;
+}
+.songs_table::-webkit-scrollbar-thumb:hover{
+  background-color: #454545;
+}
