@@ -116,7 +116,7 @@
   overflow-y: scroll;
   padding: 0 40px;
   padding-bottom: 90px;
-  /* background-color: white; */
+  background-color: white;
 }
 .home_right1 {
   width: 83%;
@@ -124,6 +124,7 @@
   overflow-y: scroll;
   padding: 0 0px;
   padding-bottom: 90px;
+  background-color: white;
 }
 .player_div {
   position: absolute;

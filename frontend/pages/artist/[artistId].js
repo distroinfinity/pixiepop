@@ -118,6 +118,9 @@ function Artist({ setSongLink, songLink }) {
           <Link href="/">
             <img src="/images/logo2.png" />
           </Link>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <h1>PixiePop</h1>
+          </div>
         </div>
         <div className="header_center">
           {/* <div className="search_div">

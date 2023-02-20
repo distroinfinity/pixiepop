@@ -37,8 +37,13 @@ function AddThoughtsForm({ setLoadingState }) {
 
   function MyImageComponent() {
     return (
-      <div>
-        {console.log("Image cover", cover)}
+      <div
+        style={{
+          display: "flex",
+          marginBottom: "30px",
+          justifyContent: "center",
+        }}
+      >
         <Image
           src={cover ? cover : "/images/placeholder.jpeg"}
           alt="Cartoon unicorn head"
@@ -194,10 +199,10 @@ function AddThoughtsForm({ setLoadingState }) {
           row={3}
           rows="10"
           cols="40"
-          className={classes.inputt}
+          className={classes.inputtt}
         />
       </div>
-      {finalImage && (
+      {/* {finalImage && ( */}
         <>
           <div className={classes.input_div}>
             <label>Name</label>
@@ -227,7 +232,7 @@ function AddThoughtsForm({ setLoadingState }) {
             />
           </div>
         </>
-      )}
+      {/* // )} */}
       {finalImage && (
         <button onClick={listNFTForSale} className={classes.createBtn}>
           Create NFT

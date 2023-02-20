@@ -24,7 +24,9 @@ function AddNewThoughts() {
           <Link href="/">
             <img src="/images/logo2.png" />
           </Link>
-          <h1>PixiePop</h1>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <h1>PixiePop</h1>
+          </div>
         </div>
         <div className="header_center"></div>
         <div className="header_right">
@@ -63,7 +65,9 @@ function AddNewThoughts() {
           </div>
 
           <div className="home_right">
-            <h1>Spill your thoughts out...</h1>
+            <p style={{ fontSize: "49px", marginTop: "10px" }}>
+              Spill your thoughts out...
+            </p>
             <AddThoughtsForm setLoadingState={setLoadingState} />
           </div>
         </div>
