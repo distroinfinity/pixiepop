@@ -141,7 +141,7 @@ function Artist({ setSongLink, songLink }) {
               <p>Home</p>
             </div>
           </Link>
-          <Link href="/addnewmusic">
+          <Link href="/addnewthoughts">
             <div className="side_mini ">
               <RiMoneyDollarCircleLine />
               <p>Mint your thoughts</p>

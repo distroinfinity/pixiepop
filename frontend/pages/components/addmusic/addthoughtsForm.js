@@ -4,8 +4,9 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-import { Configuration, OpenAIApi } from "openai";
-const axios = require("axios").default;
+
+import { marketplaceAddress } from "../../../../backend/config";
+import NFTMarketplace from "../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 
 import { PROJECTID, PROJECTSECRET } from "../../../api_key";
 import { create as ipfsHttpClient } from "ipfs-http-client";
@@ -22,24 +23,15 @@ const ipfs = ipfsHttpClient({
 });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const configuration = new Configuration({
-  apiKey: `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`,
-});
-const openai = new OpenAIApi(configuration);
-
-import { marketplaceAddress } from "../../../../backend/config";
-import NFTMarketplace from "./../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
-
-function AddmusicForm({ setLoadingState }) {
+function AddThoughtsForm({ setLoadingState }) {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [royalty, setRoyalty] = useState();
   const [price, setPrice] = useState(null);
-  // const [fileUrl, setFileUrl] = useState(null);
-  const [mp3, setMp3] = useState(null);
   const [cover, setCover] = useState(null);
   const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
+  const [finalImage, setFinalImage] = useState(false);
 
   const router = useRouter();
 
@@ -72,16 +64,6 @@ function AddmusicForm({ setLoadingState }) {
     if (name === "royalty") {
       setRoyalty(value);
     }
-  }
-  async function onChange(e) {
-    const file = e.target.files[0];
-    setMp3(file);
-  }
-  async function selectCover(e) {
-    const file = e.target.files[0];
-    console.log("selected image file is", e);
-
-    setCover(file);
   }
 
   async function uploadToIPFS(mp3Url) {
@@ -120,18 +102,6 @@ function AddmusicForm({ setLoadingState }) {
     }
     console.log("find image on ipfs at", coverUrl);
 
-    // try {
-    //   const result = await ipfs.add(file);
-    //   console.log("infura result for cover", result);
-    //   console.log(`File uploaded to IPFS with hash ${result.cid.toString()}`);
-    //   coverUrl = `https://pixie2.infura-ipfs.io/ipfs/${result.path}`;
-    // } catch (error) {
-    //   console.log("Error uploading cover photo: ", error);
-    // }
-    // console.log("ipfs cover url is ", coverUrl);
- 
-
-    // const nftUrl = await uploadToIPFS(mp3Url);
     const nftUrl = await uploadToIPFS(coverUrl);
 
     console.log("nft url is ", nftUrl);
@@ -150,21 +120,17 @@ function AddmusicForm({ setLoadingState }) {
     );
     let listingPrice = await contract.getListingPrice();
     listingPrice = listingPrice.toString();
-    let transaction = await contract.createToken(
-      nftUrl,
-      price_,
-      royalty,
-      // coverUrl,
-      {
-        value: listingPrice,
-      }
-    );
+    let transaction = await contract.createToken(nftUrl, price_, royalty, {
+      value: listingPrice,
+    });
     await transaction.wait();
     setLoadingState(false);
     router.push("/");
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFinalImage(false);
     const response = await fetch("/api/predictions", {
       method: "POST",
       headers: {
@@ -196,6 +162,8 @@ function AddmusicForm({ setLoadingState }) {
       if (prediction.output) {
         console.log("prediction output", prediction.output[0]);
         setCover(prediction.output[0]);
+        setFinalImage(true);
+        // code to download the generated image
         // const url = prediction.output[0];
         // await fetch(url)
         //   .then((response) => {
@@ -228,58 +196,49 @@ function AddmusicForm({ setLoadingState }) {
           cols="40"
           className={classes.inputt}
         />
-        {/* <textarea
-          className="app-input"
-          placeholder="Search Bears with Paint Brushes the Starry Night, painted by Vincent Van Gogh.."
-          onChange={(e) => setPrompt(e.target.value)}
-          rows="10"
-          cols="40"
-        /> */}
       </div>
-      <div className={classes.input_div}>
-        <label>Name</label>
-        <input
-          onChange={handleChange}
-          name="name"
-          type="text"
-          className={classes.inputt}
-        />
-      </div>
-      <div className={classes.input_div}>
-        <label>Asset Price</label>
-        <input
-          onChange={handleChange}
-          name="price"
-          type="text"
-          className={classes.inputt}
-        />
-      </div>
-      <div className={classes.input_div}>
-        <label>Royalty (in %)</label>
-        <input
-          onChange={handleChange}
-          name="royalty"
-          type="text"
-          className={classes.inputt}
-        />
-      </div>
-      {/* <div className={classes.input_div}>
-        <label>Select cover photo</label>
-        <input
-          onChange={selectCover}
-          type="file"
-          accept=".jpeg,.jpg"
-          className={classes.inputt}ra
-        />
-      </div> */}
-      <button onClick={listNFTForSale} className={classes.createBtn}>
-        Create NFT
-      </button>
+      {finalImage && (
+        <>
+          <div className={classes.input_div}>
+            <label>Name</label>
+            <input
+              onChange={handleChange}
+              name="name"
+              type="text"
+              className={classes.inputt}
+            />
+          </div>
+          <div className={classes.input_div}>
+            <label>Asset Price</label>
+            <input
+              onChange={handleChange}
+              name="price"
+              type="text"
+              className={classes.inputt}
+            />
+          </div>
+          <div className={classes.input_div}>
+            <label>Royalty (in %)</label>
+            <input
+              onChange={handleChange}
+              name="royalty"
+              type="text"
+              className={classes.inputt}
+            />
+          </div>
+        </>
+      )}
+      {finalImage && (
+        <button onClick={listNFTForSale} className={classes.createBtn}>
+          Create NFT
+        </button>
+      )}
+
       <button onClick={handleSubmit} className={classes.createBtn}>
-        Generate NFT
+        Generate Art
       </button>
     </div>
   );
 }
 
-export default AddmusicForm;
+export default AddThoughtsForm;
