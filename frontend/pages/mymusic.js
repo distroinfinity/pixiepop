@@ -17,7 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ConnectButton } from "web3uikit";
 import Link from "next/link";
 import classes from ".././styles/myMusic.module.css";
-import { TfiThought } from "react-icons/all";
+import { TfiThought } from "react-icons/tfi";
 // import { MdLibraryMusic } from "react-icons/md";
 
 import { marketplaceAddress } from "./../../backend/config";

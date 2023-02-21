@@ -36,13 +36,6 @@ function SongPage({ setSongLink }) {
     await fetchFans(router.query.songId);
     // await getAccount();
   }
-  // async function getAccount() {
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-  //   let accounts = await provider.send("eth_requestAccounts", []);
-  //   let account = accounts[0];
-  //   // console.log(account);
-  //   // setAccount(account);
-  // }
 
   async function getTrackInfo(trackId) {
     //getNFT
@@ -196,11 +189,13 @@ function SongPage({ setSongLink }) {
             <h1>NFT Details</h1>
             <div className={classes.song1}>
               <div className={classes.song_left}>
-                <img src={trackInfo.image} />
+                <div style={{ border: "12px solid #94BBE9" }}>
+                  <img src={trackInfo.image} />
+                </div>
               </div>
               <div className={classes.song_center}>
                 <div className={classes.labelss}>
-                  <p>Art</p>
+                  <p>Name</p>
                   <p>Art Description</p>
                   <p>Artist Name</p>
                   <p>Price</p>
@@ -219,11 +214,24 @@ function SongPage({ setSongLink }) {
             </div>
             <div className={classes.fans_list}>
               <div className={classes.artist_fans}>
-                <h1>Top Fans</h1>
+                <h1>Top Collectors</h1>
                 <div className={classes.songs_table}>
                   {fans.map((d, index) => (
                     <FansList fanData={d} index={index} />
                   ))}
+                  {fans.length == 0 ? (
+                    <h5
+                      style={{
+                        textAlign: "center",
+                        width: "100%",
+                        color: "grey",
+                      }}
+                    >
+                      This Art piece does not have any collectors yet.....
+                    </h5>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>

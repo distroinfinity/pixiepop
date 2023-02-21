@@ -192,7 +192,7 @@ function Artist({ setSongLink, songLink }) {
               </div>
             </div>
             <div className={classes.artist_fans}>
-              <h2>Top Fans</h2>
+              <h2>Top Collectors</h2>
               <div className={classes.songs_table}>
                 {fans.map((d, index) => (
                   <FansList fanData={d} index={index} />

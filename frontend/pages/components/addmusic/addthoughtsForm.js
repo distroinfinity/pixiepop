@@ -6,13 +6,14 @@ import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { marketplaceAddress } from "../../../../backend/config";
 import NFTMarketplace from "../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
-import { BallTriangle } from "react-loader-spinner";
+
 import { PROJECTID, PROJECTSECRET } from "../../../api_key";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-
 const projectId = PROJECTID;
 const projectSecret = PROJECTSECRET;
 const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
+
+import { TextArea, Button, Input, Loading } from "web3uikit";
 
 const ipfs = ipfsHttpClient({
   url: "https://ipfs.infura.io:5001/api/v0",
@@ -148,6 +149,8 @@ function AddThoughtsForm({ setLoadingState }) {
     });
     let prediction = await response.json();
     if (response.status !== 201) {
+      console.log("eeror detected");
+      setLoading(false);
       setError(prediction.detail);
       return;
     }
@@ -170,21 +173,6 @@ function AddThoughtsForm({ setLoadingState }) {
         setCover(prediction.output[0]);
         setFinalImage(true);
         setLoading(false);
-        // code to download the generated image
-        // const url = prediction.output[0];
-        // await fetch(url)
-        //   .then((response) => {
-        //     return response.blob();
-        //   })
-        //   .then((blob) => {
-        //     const url = window.URL.createObjectURL(new Blob([blob]));
-        //     const link = document.createElement("a");
-        //     link.href = url;
-        //     link.setAttribute("download", "image.jpg");
-        //     document.body.appendChild(link);
-        //     link.click();
-        //     link.parentNode.removeChild(link);
-        //   });
       }
       setPrediction(prediction);
     }
@@ -193,83 +181,103 @@ function AddThoughtsForm({ setLoadingState }) {
   return (
     <div className={classes.addMusic}>
       {MyImageComponent()}
-      <div className={classes.input_div}>
-        <label>Description</label>
-        <textarea
-          onChange={handleChange}
-          name="desc"
-          row={3}
-          rows="10"
-          cols="40"
-          className={classes.inputtt}
-        />
-      </div>
-      {finalImage && (
-        <>
-          <div className={classes.input_div}>
-            <label>Name</label>
-            <input
-              onChange={handleChange}
-              name="name"
-              type="text"
-              className={classes.inputt}
-            />
-          </div>
-          <div className={classes.input_div}>
-            <label>Asset Price</label>
-            <input
-              onChange={handleChange}
-              name="price"
-              type="text"
-              className={classes.inputt}
-            />
-          </div>
-          <div className={classes.input_div}>
-            <label>Royalty (in %)</label>
-            <input
-              onChange={handleChange}
-              name="royalty"
-              type="text"
-              className={classes.inputt}
-            />
-          </div>
-        </>
-      )}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ marginBottom: "10px" }}>
-          {loading && (
-            <BallTriangle
-              height={100}
-              width={100}
-              radius={5}
-              color="black"
-              ariaLabel="ball-triangle-loading"
-              wrapperClass={{}}
-              wrapperStyle=""
-              visible={true}
-            />
-          )}
-        </div>
-        {!loading && (
-          <div>
-            {finalImage && (
-              <button onClick={listNFTForSale} className={classes.createBtn}>
-                Create NFT
-              </button>
-            )}
+      <>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            height: "600px",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <TextArea
+            label="Description"
+            name="desc"
+            onChange={handleChange}
+            placeholder="Describe your image"
+            value={desc}
+          />
+          {finalImage && (
+            <>
+              <Input
+                label="Asset Name"
+                name="name"
+                placeholder="Enter name of your Asset"
+                onChange={handleChange}
+                onBlur={function noRefCheck() {}}
+                type="text"
+              />
 
-            <button onClick={handleSubmit} className={classes.createBtn}>
-              Generate Art
-            </button>
+              <Input
+                label="Asset Price"
+                name="price"
+                placeholder="Enter price for your Asset"
+                onChange={handleChange}
+                onBlur={function noRefCheck() {}}
+                type="number"
+              />
+
+              <Input
+                label="Royalty"
+                name="royalty"
+                placeholder="Enter royalty %"
+                onChange={handleChange}
+                onBlur={function noRefCheck() {}}
+                type="number"
+              />
+            </>
+          )}
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div style={{ marginBottom: "10px" }}>
+                {loading && (
+                  <div
+                    style={{
+                      backgroundColor: "#ECECFE",
+                      borderRadius: "8px",
+                      padding: "20px",
+                    }}
+                  >
+                    <Loading
+                      size={12}
+                      spinnerColor="#2E7DAF"
+                      spinnerType="wave"
+                    />
+                  </div>
+                )}
+              </div>
+              {!loading && (
+                <div style={{ display: "flex", paddingBottom: "100px" }}>
+                  <Button
+                    onClick={handleSubmit}
+                    text="Generate Art"
+                    theme="secondary"
+                    size="large"
+                    disabled={!desc}
+                  />
+                  {console.log("herere", desc)}
+                  {finalImage && (
+                    <Button
+                      onClick={listNFTForSale}
+                      text="Mint this Art"
+                      theme="secondary"
+                      size="large"
+                      disabled={!name || !price || !royalty}
+                    />
+                  )}
+                </div>
+              )}
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      </>
     </div>
   );
 }
