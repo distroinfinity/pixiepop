@@ -11,15 +11,7 @@ import { NotificationProvider } from "web3uikit";
 import "../styles/globals.css";
 function MyApp({ Component, pageProps }) {
   const [songLink, setSongLink] = useState("");
-  // useEffect(() => {
-  //   console.log("reached here once");
-  //   checkConnection();
-  // }, []);
 
-  // async function checkConnection() {
-  //   const isUnlocked = await window?.ethereum?._metamask.isUnlocked();
-  //   console.debug("check if connected", { isUnlocked });
-  // }
   return (
     <div className={classes.App}>
       <MoralisProvider initializeOnMount={false}>
