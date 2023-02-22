@@ -37,12 +37,14 @@ function Home({ setSongLink }) {
     const provider = new ethers.providers.JsonRpcProvider(
       "https://rpc.testnet.mantle.xyz/"
     );
-    // console.log("testing provider", provider);
-    // if (!window.ethereum) {
-    //   console.log("not connected");
-    // } else {
-    //   console.log("connected");
-    // }
+    console.log(
+      marketplaceAddress,
+      "next",
+      NFTMarketplace.abi,
+      "next",
+      provider
+    );
+
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,

@@ -14,7 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ethers } from "ethers";
 import axios from "axios";
 import { marketplaceAddress } from "../../config";
-import NFTMarketplace from "./../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.dbg.json";
+import NFTMarketplace from "./../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 function SongPage({ setSongLink }) {
   const [fans, setFans] = useState([]);
   const [trackInfo, setTrackInfo] = useState("");
@@ -24,7 +24,7 @@ function SongPage({ setSongLink }) {
 
   useEffect(() => {
     loadData();
-  }, [account]);
+  }, [account, fans, trackInfo]);
 
   async function loadData() {
     await getTrackInfo(router.query.songId);
@@ -36,11 +36,11 @@ function SongPage({ setSongLink }) {
     //getNFT
     if (trackInfo != "") return;
 
-    // console.log("track id is ", trackId);
+    console.log("track id is ", trackId);
     const provider = new ethers.providers.JsonRpcProvider(
       "https://rpc.testnet.mantle.xyz/"
     );
-    // console.log("provider ", provider);
+
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,
@@ -67,7 +67,7 @@ function SongPage({ setSongLink }) {
     };
     // return item;
 
-    // console.log("song info", item);
+    console.log("song info", item);
     setTrackInfo(item);
   }
 
@@ -84,7 +84,7 @@ function SongPage({ setSongLink }) {
     const data = await contract.fetchFansforNft(songId);
 
     const items = await Promise.all(
-      data.map(async (i) => {
+      data?.map(async (i) => {
         let amount = ethers.utils.formatUnits(i.amount.toString(), "ether");
         let type =
           ethers.utils.formatUnits(i.fanType.toString(), "ether") * 1e18;
@@ -212,7 +212,7 @@ function SongPage({ setSongLink }) {
               <div className={classes.artist_fans}>
                 <h1>Top Collectors</h1>
                 <div className={classes.songs_table}>
-                  {fans.map((d, index) => (
+                  {fans?.map((d, index) => (
                     <FansList key={index} fanData={d} index={index} />
                   ))}
                   {fans.length == 0 ? (

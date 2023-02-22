@@ -3,11 +3,7 @@ import classes from "./../../../styles/songCard.module.css";
 import Link from "next/link";
 // import { marketplaceAddress } from "./../../../../backend/config";
 import { marketplaceAddress } from "./../../../config";
-
-// import NFTMarketplace from "./../../../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
-// import NFTMarketplace from "./../../../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
-
-import NFTMarketplace from "./../../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.dbg.json";
+import NFTMarketplace from "./../../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
@@ -21,6 +17,13 @@ function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+    console.log(
+      marketplaceAddress,
+      "next2",
+      NFTMarketplace.abi,
+      "next2",
+      provider
+    );
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,
