@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { marketplaceAddress } from "./../../../config";
-import Marquee from "react-fast-marquee";
 import NFTMarketplace from "./../../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 const PROJECTID = process.env.PROJECTID;
 const PROJECTSECRET = process.env.PROJECTSECRET;
