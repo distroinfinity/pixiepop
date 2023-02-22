@@ -3,7 +3,7 @@ import classes from "../styles/dashboard.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
-import { TfiThought } from "react-icons/all";
+import { TfiThought } from "react-icons/tfi";
 // import { MdLibraryMusic } from "react-icons/md";
 
 import "bootstrap/dist/css/bootstrap.min.css";

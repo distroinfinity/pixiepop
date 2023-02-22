@@ -8,7 +8,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
 import { useRouter } from "next/router";
-import { TfiThought } from "react-icons/all";
+import { TfiThought } from "react-icons/tfi";
 // import { MdLibraryMusic } from "react-icons/md";
 
 import { Modal, Form } from "react-bootstrap";
