@@ -75,7 +75,7 @@ function SongPage({ setSongLink }) {
     };
     // return item;
 
-    console.log("song info", item);
+    // console.log("song info", item);
     setTrackInfo(item);
   }
 
@@ -221,7 +221,7 @@ function SongPage({ setSongLink }) {
                 <h1>Top Collectors</h1>
                 <div className={classes.songs_table}>
                   {fans.map((d, index) => (
-                    <FansList fanData={d} index={index} />
+                    <FansList key={index} fanData={d} index={index} />
                   ))}
                   {fans.length == 0 ? (
                     <h5

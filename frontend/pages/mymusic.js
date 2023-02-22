@@ -35,7 +35,7 @@ function Mymusic({ setSongLink }) {
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    console.log("checking for signer", signer);
+    // console.log("checking for signer", signer);
 
     const marketplaceContract = new ethers.Contract(
       marketplaceAddress,
@@ -43,7 +43,7 @@ function Mymusic({ setSongLink }) {
       signer
     );
     const data = await marketplaceContract.fetchMyNFTs();
-    console.log("nfts ", data);
+    // console.log("nfts ", data);
     const items = await Promise.all(
       data.map(async (i) => {
         const tokenURI = await marketplaceContract.tokenURI(i.tokenId);
@@ -69,7 +69,7 @@ function Mymusic({ setSongLink }) {
         return item;
       })
     );
-    console.log("my nfts", items);
+    // console.log("my nfts", items);
     setNfts(items);
     setLoadingState(false);
   }
@@ -134,7 +134,7 @@ function Mymusic({ setSongLink }) {
               <div className={classes.mymusic}>
                 {nfts.length == 0 && (
                   <h5 style={{ textAlign: "center", width: "100%" }}>
-                    You haven't purchased any NFTs yet...
+                    You haven&apos;t purchased any NFTs yet...
                   </h5>
                 )}
                 {nfts.map((d, index) => (

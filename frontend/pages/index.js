@@ -36,12 +36,11 @@ function Home({ setSongLink }) {
       "https://rpc.testnet.mantle.xyz/"
     );
     // console.log("testing provider", provider);
-    console.log("here", window.ethereum);
-    if (!window.ethereum) {
-      console.log("not connected");
-    } else {
-      console.log("connected");
-    }
+    // if (!window.ethereum) {
+    //   console.log("not connected");
+    // } else {
+    //   console.log("connected");
+    // }
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,

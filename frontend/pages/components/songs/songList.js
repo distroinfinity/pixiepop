@@ -2,7 +2,7 @@ import React from "react";
 // import { BsFillPlayCircleFill } from "react-icons/bs";
 import classes from "../../../styles/songList.module.css";
 function SongsList({ setSongLink, songdata, index }) {
-  console.log("data of song", songdata);
+  // console.log("data of song", songdata);
 
   return (
     <div className={classes.songlist_main}>
@@ -20,7 +20,7 @@ function SongsList({ setSongLink, songdata, index }) {
           src={songdata.cover}
         />
         <h5 style={{ flex: "0.4" }}>{songdata.name}</h5>
-        <p style={{ flex: "0.3" }}>{songdata.price} Matic</p>
+        <p style={{ flex: "0.3" }}>{songdata.price} BIT</p>
       </div>
       {/* <BsFillPlayCircleFill
         onClick={() => setSongLink(songdata.audio)}

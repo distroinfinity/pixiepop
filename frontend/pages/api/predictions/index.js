@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  console.log("reached index api");
   const response = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
     headers: {

@@ -10,7 +10,7 @@ import { Skeleton } from "web3uikit";
 function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
   async function buyNFT() {
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
-    console.log("Buying this", songData);
+    // console.log("Buying this", songData);
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -23,7 +23,7 @@ function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
     /* user will be prompted to pay the asking proces to complete the transaction */
 
     const price = ethers.utils.parseUnits(songData.price.toString(), "ether");
-    console.log("fghchfgcgh", price, typeof price);
+    // console.log("fghchfgcgh", price, typeof price);
 
     const transaction = await contract.createMarketSale(songData.tokenId, {
       value: price,
@@ -77,7 +77,7 @@ function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
           <div className={classes.price_div}>
             <p>
               Price: &nbsp;{" "}
-              <span className={classes.price}>{songData?.price} Matic</span>
+              <span className={classes.price}>{songData?.price} BIT</span>
             </p>
           </div>
           {songData.sold == false ? (

@@ -41,9 +41,7 @@ function Dashboard({ setSongLink }) {
       NFTMarketplace.abi,
       signer
     );
-    console.log("reacehd here");
     const data = await contract.fetchItemsListed();
-    console.log("test  ", data);
     const items = await Promise.all(
       data.map(async (i) => {
         const tokenUri = await contract.tokenURI(i.tokenId);
@@ -140,7 +138,7 @@ function Dashboard({ setSongLink }) {
                       color: "grey",
                     }}
                   >
-                    You haven't minted any music yet.....
+                    You haven&apos;t minted any music yet.....
                   </h5>
                 )}
                 {myNfts.map((d, index) => (

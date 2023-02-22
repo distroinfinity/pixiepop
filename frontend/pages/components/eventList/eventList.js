@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "../../../styles/eventList.module.css";
 function EventList({ eventData, index }) {
-  console.log(eventData);
+  // console.log(eventData);
   return (
     <div className={classes.eventList}>
       <p>{index + 1}</p>

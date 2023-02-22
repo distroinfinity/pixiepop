@@ -28,7 +28,7 @@ function SongCard({ songData, setSongLink }) {
 
   async function resell(e) {
     e.preventDefault();
-    console.log("reselling...");
+    // console.log("reselling...");
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -52,7 +52,7 @@ function SongCard({ songData, setSongLink }) {
     );
     await transaction.wait();
 
-    console.log("re listed");
+    // console.log("re listed");
     router.push("/");
   }
 
@@ -103,7 +103,7 @@ function SongCard({ songData, setSongLink }) {
         <div className={classes.price_div}>
           <p>
             Price: &nbsp;{" "}
-            <span className={classes.price}>{songData?.price} Matic</span>
+            <span className={classes.price}>{songData?.price} BIT</span>
           </p>
         </div>
 

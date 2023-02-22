@@ -101,7 +101,6 @@ function AddThoughtsForm({ setLoadingState }) {
   }
 
   async function listNFTForSale() {
-    console.log("reaced here", cover);
     let file;
     let coverUrl;
     try {
@@ -116,11 +115,11 @@ function AddThoughtsForm({ setLoadingState }) {
     } catch (error) {
       console.log("Error downloading and uploading image to IPFS:", error);
     }
-    console.log("find image on ipfs at", coverUrl);
+    // console.log("find image on ipfs at", coverUrl);
 
     const nftUrl = await uploadToIPFS(coverUrl);
 
-    console.log("nft url is ", nftUrl);
+    // console.log("nft url is ", nftUrl);
 
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
@@ -168,7 +167,7 @@ function AddThoughtsForm({ setLoadingState }) {
     });
     let prediction = await response.json();
     if (response.status !== 201) {
-      console.log("error detected");
+      // console.log("error detected");
       handleNewNotification("error");
       setLoading(false);
       setError(prediction.detail);
@@ -189,7 +188,7 @@ function AddThoughtsForm({ setLoadingState }) {
       }
       console.log({ prediction });
       if (prediction.output) {
-        console.log("prediction output", prediction.output[0]);
+        // console.log("prediction output", prediction.output[0]);
         setCover(prediction.output[0]);
         setFinalImage(true);
         setLoading(false);
@@ -283,7 +282,6 @@ function AddThoughtsForm({ setLoadingState }) {
                       size="large"
                       disabled={!desc}
                     />
-                    {console.log("herere", desc)}
                     {/* {finalImage && ( */}
                     <Button
                       onClick={listNFTForSale}
