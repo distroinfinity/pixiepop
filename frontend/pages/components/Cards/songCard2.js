@@ -25,9 +25,7 @@ function SongCard({ songData, setSongLink }) {
       setResellAmount(value);
     }
   }
-  function handleSongPlay() {
-    setSongLink(songData.audio);
-  }
+
   async function resell(e) {
     e.preventDefault();
     console.log("reselling...");
@@ -95,12 +93,11 @@ function SongCard({ songData, setSongLink }) {
         </Link>
 
         <p className={classes.artistName}>
-          Artist: &nbsp;{" "}
-          <Link href={`/artist/${songData.artist}`}>
-            <span className={classes.price}>
-              {"0x...." + songData?.artist?.substr(songData.artist.length - 5)}
-            </span>
-          </Link>
+          Artist: &nbsp; {/* <Link href={`/artist/${songData.artist}`}> */}
+          <span className={classes.price}>
+            {"0x...." + songData?.artist?.substr(songData.artist.length - 5)}
+          </span>
+          {/* </Link> */}
         </p>
 
         <div className={classes.price_div}>

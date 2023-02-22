@@ -42,7 +42,9 @@ function SongPage({ setSongLink }) {
     if (trackInfo != "") return;
 
     // console.log("track id is ", trackId);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://rpc.testnet.mantle.xyz/"
+    );
     // console.log("provider ", provider);
     const contract = new ethers.Contract(
       marketplaceAddress,
@@ -79,7 +81,9 @@ function SongPage({ setSongLink }) {
 
   async function fetchFans(songId) {
     if (!songId || fans.length > 0) return;
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://rpc.testnet.mantle.xyz/"
+    );
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,

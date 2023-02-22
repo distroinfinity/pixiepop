@@ -45,7 +45,9 @@ function Artist({ setSongLink, songLink }) {
   async function fetchTracks(artist) {
     if (tracks.length > 0) return;
     // console.log("artist id is  ", artist);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://rpc.testnet.mantle.xyz/"
+    );
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,
@@ -86,7 +88,9 @@ function Artist({ setSongLink, songLink }) {
   async function fetchFans(artist) {
     if (!artist) return;
     // console.log("artist id is  ", artist);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://rpc.testnet.mantle.xyz/"
+    );
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,

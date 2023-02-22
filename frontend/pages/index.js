@@ -32,7 +32,9 @@ function Home({ setSongLink }) {
   }, [newBuy]);
 
   async function loadNFTs() {
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://rpc.testnet.mantle.xyz/"
+    );
     // console.log("testing provider", provider);
     console.log("here", window.ethereum);
     if (!window.ethereum) {
