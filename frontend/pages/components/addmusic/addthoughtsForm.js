@@ -11,12 +11,24 @@ import { marketplaceAddress } from "./../../../config";
 import NFTMarketplace from "./../../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 // import { PROJECTID, PROJECTSECRET } from "../../../api_key";
 
-const PROJECTID = process.env.REPLICATE_API_TOKEN;
-const PROJECTSECRET = process.env.REPLICATE_API_TOKEN;
+const PROJECTID = process.env.PROJECTID;
+const PROJECTSECRET = process.env.PROJECTSECRET;
 import { create as ipfsHttpClient } from "ipfs-http-client";
-const projectId = PROJECTID;
-const projectSecret = PROJECTSECRET;
-const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
+console.log("testing id", PROJECTID, PROJECTSECRET);
+const test =
+  "Basic " +
+  btoa(
+    process.env.NEXT_PUBLIC_PROJECTID?.toString() +
+      ":" +
+      process.env.NEXT_PUBLIC_PROJECTSECRET?.toString()
+  );
+
+// const authorization =
+//   "Basic " +
+//   btoa(
+//     "2IOI6a4BiuB4IA38fMby98w8yPq" + ":" + "48c653f196c18c4566934e7313c872b6"
+//   );
+// console.log("auth test", authorization, test);
 
 import {
   TextArea,
@@ -30,7 +42,7 @@ import {
 const ipfs = ipfsHttpClient({
   url: "https://ipfs.infura.io:5001/api/v0",
   headers: {
-    authorization,
+    authorization: test,
   },
 });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
