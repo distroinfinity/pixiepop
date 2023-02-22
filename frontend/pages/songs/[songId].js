@@ -20,7 +20,8 @@ import sha256 from "./../helperfunctions/hash";
 // import { marketplaceAddress } from "./../../../backend/config";
 import { marketplaceAddress } from "../../config";
 // import NFTMarketplace from "./../../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
-import NFTMarketplace from "./../../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
+// import NFTMarketplace from "./../../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
+import NFTMarketplace from "./../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.dbg.json";
 function SongPage({ setSongLink }) {
   const [fans, setFans] = useState([]);
   const [trackInfo, setTrackInfo] = useState("");
