@@ -11,14 +11,11 @@ import { AiOutlineHome } from "react-icons/ai";
 import { Outlet } from "react-router-dom";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
-// import Logo from "./../assets/logo2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { Link, useLocation } from "react-router-dom";
 import { ConnectButton } from "web3uikit";
 import Link from "next/link";
 import classes from ".././styles/myMusic.module.css";
 import { TfiThought } from "react-icons/tfi";
-// import { MdLibraryMusic } from "react-icons/md";
 
 import { marketplaceAddress } from "./../../backend/config";
 import NFTMarketplace from "./../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
@@ -38,6 +35,7 @@ function Mymusic({ setSongLink }) {
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+    console.log("checking for signer", signer);
 
     const marketplaceContract = new ethers.Contract(
       marketplaceAddress,

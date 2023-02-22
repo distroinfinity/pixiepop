@@ -5,10 +5,7 @@ import { Outlet } from "react-router-dom";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
 import { TfiThought } from "react-icons/tfi";
-// import { MdLibraryMusic } from "react-icons/md";
-// import Logo from "./../assets/logo2.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { Link, useLocation } from "react-router-dom";
 import { ConnectButton } from "web3uikit";
 import Link from "next/link";
 import classes from "../styles/Home.module.css";
@@ -35,25 +32,26 @@ function Home({ setSongLink }) {
   }, [newBuy]);
 
   async function loadNFTs() {
-    /* query music */
     const provider = new ethers.providers.JsonRpcProvider();
+    // console.log("testing provider", provider);
+    console.log("here", window.ethereum);
+    if (!window.ethereum) {
+      console.log("not connected");
+    } else {
+      console.log("connected");
+    }
     const contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace.abi,
       provider
     );
     const data = await contract.fetchMarketItems();
-    // console.log("nfts are", data);
 
-    /*
-     *  map over items returned from smart contract and format
-     *  them as well as fetch their token metadata
-     */
     const items = await Promise.all(
       data.map(async (i) => {
         const tokenUri = await contract.tokenURI(i.tokenId);
         const meta = await axios.get(tokenUri);
-        console.log("meta data is", meta);
+        // console.log("meta data is", meta);
         let price = ethers.utils.formatUnits(i.price.toString(), "ether");
         const hash = await sha256(
           tokenUri.replace("https://pixie2.infura-ipfs.io/ipfs/", "")
@@ -70,12 +68,11 @@ function Home({ setSongLink }) {
           artist: i.artist,
           sold: i.sold,
           audio: meta.data.image,
-          // cover: i.cover,
         };
         return item;
       })
     );
-    console.log("filetered items are", items);
+    // console.log("filetered items are", items);
     setNfts(items);
     setLoadingState(false);
   }
@@ -92,7 +89,6 @@ function Home({ setSongLink }) {
               display: "flex",
               alignItems: "center",
               color: "black",
-              // marginLeft: "15px",
             }}
           >
             <h1>PixiePop</h1>

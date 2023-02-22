@@ -13,7 +13,14 @@ const projectId = PROJECTID;
 const projectSecret = PROJECTSECRET;
 const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 
-import { TextArea, Button, Input, Loading } from "web3uikit";
+import {
+  TextArea,
+  Button,
+  Input,
+  Loading,
+  BannerStrip,
+  useNotification,
+} from "web3uikit";
 
 const ipfs = ipfsHttpClient({
   url: "https://ipfs.infura.io:5001/api/v0",
@@ -43,13 +50,16 @@ function AddThoughtsForm({ setLoadingState }) {
           display: "flex",
           marginBottom: "20px",
           justifyContent: "center",
+          border: "12px solid #94BBE9",
+          width: 528,
+          height: 528,
         }}
       >
         <Image
           src={cover ? cover : "/images/placeholder.jpeg"}
           alt="Cartoon unicorn head"
-          width={500}
-          height={500}
+          width={528}
+          height={528}
         />
       </div>
     );
@@ -133,6 +143,15 @@ function AddThoughtsForm({ setLoadingState }) {
     setLoadingState(false);
     router.push("/");
   }
+  const dispatch = useNotification();
+  const handleNewNotification = (type) => {
+    dispatch({
+      type: "error",
+      message: "Please reach out to support",
+      title: "Error Generating Image",
+      position: "topR",
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -149,7 +168,8 @@ function AddThoughtsForm({ setLoadingState }) {
     });
     let prediction = await response.json();
     if (response.status !== 201) {
-      console.log("eeror detected");
+      console.log("error detected");
+      handleNewNotification("error");
       setLoading(false);
       setError(prediction.detail);
       return;
@@ -179,26 +199,27 @@ function AddThoughtsForm({ setLoadingState }) {
   };
 
   return (
-    <div className={classes.addMusic}>
-      {MyImageComponent()}
-      <>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            height: "600px",
-            justifyContent: "space-evenly",
-          }}
-        >
-          <TextArea
-            label="Description"
-            name="desc"
-            onChange={handleChange}
-            placeholder="Describe your image"
-            value={desc}
-          />
-          {finalImage && (
+    <>
+      <div className={classes.addMusic}>
+        {MyImageComponent()}
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "600px",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <TextArea
+              label="Description"
+              name="desc"
+              onChange={handleChange}
+              placeholder="Describe your image"
+              value={desc}
+            />
+            {/* {finalImage && ( */}
             <>
               <Input
                 label="Asset Name"
@@ -227,43 +248,43 @@ function AddThoughtsForm({ setLoadingState }) {
                 type="number"
               />
             </>
-          )}
-          <div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <div style={{ marginBottom: "10px" }}>
-                {loading && (
-                  <div
-                    style={{
-                      backgroundColor: "#ECECFE",
-                      borderRadius: "8px",
-                      padding: "20px",
-                    }}
-                  >
-                    <Loading
-                      size={12}
-                      spinnerColor="#2E7DAF"
-                      spinnerType="wave"
+            {/* // )} */}
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <div style={{ marginBottom: "10px" }}>
+                  {loading && (
+                    <div
+                      style={{
+                        backgroundColor: "#ECECFE",
+                        borderRadius: "8px",
+                        padding: "20px",
+                      }}
+                    >
+                      <Loading
+                        size={12}
+                        spinnerColor="#2E7DAF"
+                        spinnerType="wave"
+                      />
+                    </div>
+                  )}
+                </div>
+                {!loading && (
+                  <div style={{ display: "flex", paddingBottom: "100px" }}>
+                    <Button
+                      onClick={handleSubmit}
+                      text="Generate Art"
+                      theme="secondary"
+                      size="large"
+                      disabled={!desc}
                     />
-                  </div>
-                )}
-              </div>
-              {!loading && (
-                <div style={{ display: "flex", paddingBottom: "100px" }}>
-                  <Button
-                    onClick={handleSubmit}
-                    text="Generate Art"
-                    theme="secondary"
-                    size="large"
-                    disabled={!desc}
-                  />
-                  {console.log("herere", desc)}
-                  {finalImage && (
+                    {console.log("herere", desc)}
+                    {/* {finalImage && ( */}
                     <Button
                       onClick={listNFTForSale}
                       text="Mint this Art"
@@ -271,14 +292,38 @@ function AddThoughtsForm({ setLoadingState }) {
                       size="large"
                       disabled={!name || !price || !royalty}
                     />
-                  )}
+
+                    {/* )} */}
+                  </div>
+                )}
+                <div
+                  key="1"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    transform: "scale(1)",
+                  }}
+                >
+                  <BannerStrip
+                    onCloseBtnClick={function noRefCheck() {}}
+                    text="404 not the droids you are looking for"
+                    type="error"
+                  />
+                  {/* <Button
+                    onClick={function noRefCheck() {}}
+                    style={{
+                      marginTop: "60px",
+                    }}
+                    text="Click to Show Banner(if hidden)"
+                    theme="outline"
+                  /> */}
                 </div>
-              )}
+              </div>
             </div>
           </div>
-        </div>
-      </>
-    </div>
+        </>
+      </div>
+    </>
   );
 }
 
