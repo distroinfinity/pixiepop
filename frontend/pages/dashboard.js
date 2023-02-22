@@ -106,7 +106,7 @@ function Dashboard({ setSongLink }) {
                 <p>Mint Your Thoughts</p>
               </div>
             </Link>
-            <Link href="/mymusic">
+            <Link href="/mythoughts">
               <div className="side_mini">
                 <TfiThought />
                 <p>Owned Thoughts</p>

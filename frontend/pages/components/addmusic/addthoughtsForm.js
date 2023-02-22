@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "../../../styles/addmusic.module.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-// import { marketplaceAddress } from "../../../../backend/config";
 import { marketplaceAddress } from "./../../../config";
-
-// import NFTMarketplace from "../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
+import Marquee from "react-fast-marquee";
 import NFTMarketplace from "./../../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
-// import { PROJECTID, PROJECTSECRET } from "../../../api_key";
-
 const PROJECTID = process.env.PROJECTID;
 const PROJECTSECRET = process.env.PROJECTSECRET;
 import { create as ipfsHttpClient } from "ipfs-http-client";
@@ -65,19 +61,30 @@ function AddThoughtsForm({ setLoadingState }) {
       <div
         style={{
           display: "flex",
-          marginBottom: "20px",
-          justifyContent: "center",
-          border: "12px solid #94BBE9",
-          width: 528,
-          height: 528,
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Image
-          src={cover ? cover : "/images/placeholder.jpeg"}
-          alt="Cartoon unicorn head"
-          width={528}
-          height={528}
-        />
+        <p style={{ fontSize: "49px", marginTop: "0px", color: "black" }}>
+          Spill your thoughts out...
+        </p>
+        <div
+          style={{
+            display: "flex",
+            marginBottom: "20px",
+            justifyContent: "center",
+            border: "12px solid #94BBE9",
+            width: 528,
+            height: 528,
+          }}
+        >
+          <Image
+            src={cover ? cover : "/images/placeholder.jpeg"}
+            alt="Cartoon unicorn head"
+            width={528}
+            height={528}
+          />
+        </div>
       </div>
     );
   }
@@ -160,6 +167,7 @@ function AddThoughtsForm({ setLoadingState }) {
     router.push("/");
   }
   const dispatch = useNotification();
+
   const handleNewNotification = (type) => {
     dispatch({
       type: "error",
@@ -168,6 +176,15 @@ function AddThoughtsForm({ setLoadingState }) {
       position: "topR",
     });
   };
+  const [rendered, setRendered] = useState(false);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: "info",
+  //     // message: "",
+  //     title: "Make sure you are on the Mantle Testnet",
+  //     position: "topR",
+  //   });
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
