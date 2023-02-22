@@ -20,6 +20,10 @@ module.exports = {
       chainId: 1337,
       allowUnlimitedContractSize: true,
     },
+    "mantle-testnet": {
+      url: "https://rpc.testnet.mantle.xyz/",
+      accounts: [process.env.PRIV_KEY], // Uses the private key from the .env file
+    },
     // localhost: {
     //   chainId: 31337,
     // },

@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
-
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-
 import "hardhat/console.sol";
 
 contract NFTMarketplace is ERC721URIStorage {
@@ -13,27 +11,14 @@ contract NFTMarketplace is ERC721URIStorage {
     Counters.Counter private _itemsSold;
     Counters.Counter private _eventsListed;
 
-    uint256 listingPrice = 0.025 ether;
+    uint256 listingPrice = 0.001 ether;
     address payable owner;
 
     // address payable[] artists;
     mapping(address => Fan[]) private artistToFan;
     mapping(uint256 => Fan[]) private nftToFan;
     mapping(uint256 => MarketItem) private idToMarketItem;
-    mapping(address => events[]) private artistToEvents;
     mapping(uint => address[]) private eventToInvites;
-    mapping(uint => events) private idToEvent;
-
-    struct events {
-        uint256 eventId;
-        string name;
-        string description;
-        string meetlink;
-        string schedule;
-        uint noOfTickets;
-        uint _priceOfTicket;
-        address[] invites;
-    }
 
     struct Fan {
         address fan;
@@ -66,7 +51,6 @@ contract NFTMarketplace is ERC721URIStorage {
         owner = payable(msg.sender);
     }
 
-    /* Updates the listing price of the contract */
     function updateListingPrice(uint _listingPrice) public payable {
         require(
             owner == msg.sender,
@@ -81,17 +65,6 @@ contract NFTMarketplace is ERC721URIStorage {
     }
 
     /* Mints a token and lists it in the marketplace */
-
-    function rewardFans(address[] memory _addresses) public payable {
-        require(
-            msg.value > 0,
-            "Send some amount to be distributed between the fans"
-        );
-        uint count = _addresses.length;
-        for (uint i = 0; i < count; i++) {
-            payable(_addresses[i]).transfer(msg.value / count);
-        }
-    }
 
     function createToken(
         string memory tokenURI,
@@ -139,42 +112,6 @@ contract NFTMarketplace is ERC721URIStorage {
             royalty,
             false
         );
-    }
-
-    function addInvites(uint eventId) public payable {
-        events storage curr = idToEvent[eventId];
-        require(msg.value == curr._priceOfTicket, "Send ticket price too");
-        eventToInvites[eventId].push(msg.sender);
-    }
-
-    // create an event
-    function createEvent(
-        string memory _name,
-        string memory _desc,
-        string memory _link,
-        string memory _schedule,
-        uint _noOfTickets,
-        uint _priceOfTicket
-    ) public payable {
-        address[] memory invites;
-        events memory curr = events(
-            _eventsListed.current(),
-            _name,
-            _desc,
-            _link,
-            _schedule,
-            _noOfTickets,
-            _priceOfTicket,
-            invites
-        );
-
-        artistToEvents[msg.sender].push(curr);
-        idToEvent[_eventsListed.current()] = curr;
-        _eventsListed.increment();
-    }
-
-    function fetchEvents(address artist) public view returns (events[] memory) {
-        return artistToEvents[artist];
     }
 
     /* Creates the sale of a marketplace item */
