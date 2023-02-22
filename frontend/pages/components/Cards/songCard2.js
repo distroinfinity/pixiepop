@@ -49,7 +49,7 @@ function SongCard({ songData, setSongLink }) {
 
     listingPrice = listingPrice.toString();
     let transaction = await contract.resellToken(
-      songData.tokenId,
+      songData?.tokenId,
       priceFormatted,
       {
         value: listingPrice,
@@ -89,11 +89,11 @@ function SongCard({ songData, setSongLink }) {
           </Form>
         </Modal.Body>
       </Modal>
-      <Link href={`/songs/${songData.tokenId}`}>
-        <img src={songData.image} alt="cover" />
+      <Link href={`/songs/${songData?.tokenId}`}>
+        <img src={songData?.image} alt="cover" />
       </Link>{" "}
       <div className={classes.song_data}>
-        <Link href={`/songs/${songData.tokenId}`}>
+        <Link href={`/songs/${songData?.tokenId}`}>
           <h3>{songData?.name}</h3>
         </Link>
 

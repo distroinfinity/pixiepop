@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
 import Loader from "./components/loader";
-import sha256 from "./helperfunctions/hash";
 
 // import { marketplaceAddress } from "./../../backend/config";
 import { marketplaceAddress } from "./../config";
@@ -57,9 +56,7 @@ function Home({ setSongLink }) {
         const meta = await axios.get(tokenUri);
         // console.log("meta data is", meta);
         let price = ethers.utils.formatUnits(i.price.toString(), "ether");
-        const hash = await sha256(
-          tokenUri.replace("https://pixie2.infura-ipfs.io/ipfs/", "")
-        );
+
         let item = {
           price,
           tokenId: i.tokenId.toNumber(),
@@ -68,7 +65,6 @@ function Home({ setSongLink }) {
           image: meta.data.image,
           name: meta.data.name,
           description: meta.data.desc,
-          tokenURI: hash,
           artist: i.artist,
           sold: i.sold,
           audio: meta.data.image,

@@ -11,10 +11,10 @@ function FansList({ fanData, index }) {
         }}
       >
         <p>{index + 1}</p>
-        <h6>{fanData.fan}</h6>
-        <p>{fanData.amount} BIT</p>
+        <h6>{fanData?.fan}</h6>
+        <p>{fanData?.amount} BIT</p>
       </div>
-      {fanData.fanType == 1 ? "VIP" : ""}
+      {fanData?.fanType == 1 ? "VIP" : ""}
     </div>
   );
 }

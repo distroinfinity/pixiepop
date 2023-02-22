@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
-import sha256 from "./helperfunctions/hash";
 import axios from "axios";
 import Loader from "./components/loader";
 import SongCard from "./components/Cards/songCard2";
@@ -50,9 +49,7 @@ function Mymusic({ setSongLink }) {
     const items = await Promise.all(
       data.map(async (i) => {
         const tokenURI = await marketplaceContract.tokenURI(i.tokenId);
-        const hash = await sha256(
-          tokenURI.replace("https://pixie2.infura-ipfs.io/ipfs/", "")
-        );
+
         const meta = await axios.get(tokenURI);
         let price = ethers.utils.formatUnits(i.price.toString(), "ether");
         let item = {
@@ -63,7 +60,6 @@ function Mymusic({ setSongLink }) {
           image: meta.data.image,
           name: meta.data.name,
           description: meta.data.description,
-          tokenURI: hash,
           artist: i.artist,
           sold: i.sold,
           audio: meta.data.image,

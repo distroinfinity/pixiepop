@@ -31,7 +31,7 @@ function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
     const price = ethers.utils.parseUnits(songData.price.toString(), "ether");
     // console.log("fghchfgcgh", price, typeof price);
 
-    const transaction = await contract.createMarketSale(songData.tokenId, {
+    const transaction = await contract.createMarketSale(songData?.tokenId, {
       value: price,
     });
     await transaction.wait();
@@ -46,12 +46,12 @@ function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
 
   return (
     <div className={classes.card_main}>
-      {songData.sold ? (
+      {songData?.sold ? (
         <div className={classes.sold_div}>
           <h1>Sold</h1>
         </div>
       ) : null}
-      <Link href={`/songs/${songData.tokenId}`}>
+      <Link href={`/songs/${songData?.tokenId}`}>
         <>
           {!loaded && (
             <Skeleton
@@ -64,13 +64,13 @@ function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
             />
           )}
 
-          <img src={songData.image} alt="cover" onLoad={handleImageLoaded} />
+          <img src={songData?.image} alt="cover" onLoad={handleImageLoaded} />
         </>
       </Link>{" "}
       {loaded && (
         <div className={classes.song_data}>
           {" "}
-          <Link href={`/songs/${songData.tokenId}`}>
+          <Link href={`/songs/${songData?.tokenId}`}>
             <h3>{songData?.name}</h3>
           </Link>
           <p className={classes.artistName}>
@@ -86,7 +86,7 @@ function SongCard({ songData, setSongLink, newBuy, setNewBuy }) {
               <span className={classes.price}>{songData?.price} BIT</span>
             </p>
           </div>
-          {songData.sold == false ? (
+          {songData?.sold == false ? (
             <button onClick={buyNFT} className={classes.buy_nft}>
               Buy
             </button>

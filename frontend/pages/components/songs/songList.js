@@ -16,11 +16,11 @@ function SongsList({ setSongLink, songdata, index }) {
         <p style={{ flex: "0.1" }}>{index + 1}</p>
         <img
           style={{ flex: "0.1" }}
-          className={classes.song_img}
-          src={songdata.cover}
+          className={classes?.song_img}
+          src={songdata?.cover}
         />
-        <h5 style={{ flex: "0.4" }}>{songdata.name}</h5>
-        <p style={{ flex: "0.3" }}>{songdata.price} BIT</p>
+        <h5 style={{ flex: "0.4" }}>{songdata?.name}</h5>
+        <p style={{ flex: "0.3" }}>{songdata?.price} BIT</p>
       </div>
       {/* <BsFillPlayCircleFill
         onClick={() => setSongLink(songdata.audio)}

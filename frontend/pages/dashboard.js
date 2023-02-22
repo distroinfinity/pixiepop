@@ -4,8 +4,6 @@ import { AiOutlineHome } from "react-icons/ai";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
 import { TfiThought } from "react-icons/tfi";
-// import { MdLibraryMusic } from "react-icons/md";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ConnectButton } from "web3uikit";
 import Link from "next/link";
@@ -14,11 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Web3Modal from "web3modal";
 import axios from "axios";
 import { ethers } from "ethers";
-import sha256 from "./helperfunctions/hash";
 import Loader from "./components/loader";
-// import { marketplaceAddress } from "./../../backend/config";
 import { marketplaceAddress } from "./../config";
-// import NFTMarketplace from "./../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
 import NFTMarketplace from "./../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 
 function Dashboard({ setSongLink }) {
@@ -49,9 +44,7 @@ function Dashboard({ setSongLink }) {
         const tokenUri = await contract.tokenURI(i.tokenId);
         const meta = await axios.get(tokenUri);
         let price = ethers.utils.formatUnits(i.price.toString(), "ether");
-        const hash = await sha256(
-          tokenUri.replace("https://pixie2.infura-ipfs.io/ipfs/", "")
-        );
+
         let item = {
           price,
           tokenId: i.tokenId.toNumber(),
@@ -60,7 +53,7 @@ function Dashboard({ setSongLink }) {
           image: meta.data.image,
           name: meta.data.name,
           description: meta.data.description,
-          identiconHash: hash,
+          // identiconHash: hash,
           artist: i.artist,
           sold: i.sold,
           audio: meta.data.image,

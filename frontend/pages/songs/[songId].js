@@ -9,18 +9,11 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { TfiThought } from "react-icons/tfi";
-// import { MdLibraryMusic } from "react-icons/md";
-
 import { Modal, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ethers } from "ethers";
 import axios from "axios";
-import sha256 from "./../helperfunctions/hash";
-
-// import { marketplaceAddress } from "./../../../backend/config";
 import { marketplaceAddress } from "../../config";
-// import NFTMarketplace from "./../../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
-// import NFTMarketplace from "./../../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
 import NFTMarketplace from "./../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.dbg.json";
 function SongPage({ setSongLink }) {
   const [fans, setFans] = useState([]);
@@ -58,9 +51,7 @@ function SongPage({ setSongLink }) {
     const tokenUri = await contract.tokenURI(data.tokenId);
     const meta = await axios.get(tokenUri);
     let price = ethers.utils.formatUnits(data.price.toString(), "ether");
-    const hash = await sha256(
-      tokenUri.replace("https://pixie2.infura-ipfs.io/ipfs/", "")
-    );
+
     let item = {
       price,
       tokenId: data.tokenId.toNumber(),
@@ -69,7 +60,6 @@ function SongPage({ setSongLink }) {
       image: meta.data.image,
       name: meta.data.name,
       description: meta.data.desc,
-      identiconHash: hash,
       artist: data.artist,
       sold: data.sold,
       audio: meta.data.image,
