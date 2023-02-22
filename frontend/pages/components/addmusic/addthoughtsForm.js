@@ -4,10 +4,15 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-import { marketplaceAddress } from "../../../../backend/config";
-import NFTMarketplace from "../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
+// import { marketplaceAddress } from "../../../../backend/config";
+import { marketplaceAddress } from "./../../../config";
 
-import { PROJECTID, PROJECTSECRET } from "../../../api_key";
+// import NFTMarketplace from "../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
+import NFTMarketplace from "./../../../artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
+// import { PROJECTID, PROJECTSECRET } from "../../../api_key";
+
+const PROJECTID = process.env.REPLICATE_API_TOKEN;
+const PROJECTSECRET = process.env.REPLICATE_API_TOKEN;
 import { create as ipfsHttpClient } from "ipfs-http-client";
 const projectId = PROJECTID;
 const projectSecret = PROJECTSECRET;

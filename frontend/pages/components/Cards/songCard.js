@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import classes from "./../../../styles/songCard.module.css";
 import Link from "next/link";
-import { marketplaceAddress } from "./../../../../backend/config";
-import NFTMarketplace from "./../../../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
+// import { marketplaceAddress } from "./../../../../backend/config";
+import { marketplaceAddress } from "./../../../config";
+
+// import NFTMarketplace from "./../../../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
+import NFTMarketplace from "./../../../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import { Skeleton } from "web3uikit";
