@@ -184,7 +184,7 @@ function AddThoughtsForm({ setLoadingState }) {
     });
     let prediction = await response.json();
     if (response.status !== 201) {
-      // console.log("error detected");
+      console.log("error detected", response);
       handleNewNotification("error");
       setLoading(false);
       setError(prediction.detail);
