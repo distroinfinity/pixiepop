@@ -21,7 +21,7 @@ import { TfiThought } from "react-icons/tfi";
 import { marketplaceAddress } from "./../config";
 
 // import NFTMarketplace from "./../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
-import NFTMarketplace from "./../artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
+import NFTMarketplace from "./../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 
 function Mymusic({ setSongLink }) {
   const [nfts, setNfts] = useState([]);

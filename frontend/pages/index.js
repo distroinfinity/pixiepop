@@ -19,7 +19,7 @@ import sha256 from "./helperfunctions/hash";
 import { marketplaceAddress } from "./../config";
 
 // import NFTMarketplace from "./../../backend/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
-import NFTMarketplace from "./../artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
+import NFTMarketplace from "./../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 
 import Song from "./components/songs/songs";
 import AudioPlayer from "react-h5-audio-player";

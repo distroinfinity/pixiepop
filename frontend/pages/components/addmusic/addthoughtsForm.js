@@ -8,7 +8,7 @@ import Web3Modal from "web3modal";
 import { marketplaceAddress } from "./../../../config";
 
 // import NFTMarketplace from "../../../../backend/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
-import NFTMarketplace from "./../../../artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
+import NFTMarketplace from "./../../../public/artifacts/contracts/NFTMarketPlace.sol/NFTMarketplace.json";
 // import { PROJECTID, PROJECTSECRET } from "../../../api_key";
 
 const PROJECTID = process.env.REPLICATE_API_TOKEN;
