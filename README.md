@@ -15,6 +15,9 @@ Under the hood PixiePop acts as a NFT Marketplace where you can trade your thoug
 - Landing/Entry Page - https://pixiepop-landing.vercel.app/
 - WebApp - https://pixiepop-git-main-distroinfinity.vercel.app/
 
+ Video Demo:
+ - https://youtu.be/XnytHUXjjZA
+
  CodeBase:
  
  - https://github.com/distroinfinity/pixiepop
