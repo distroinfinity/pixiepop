@@ -1,7 +1,7 @@
 # PixiePop
 ![063E3EBD-2328-4092-AACA-761570016CBD](https://user-images.githubusercontent.com/59890794/220612163-768da353-ea5f-483d-9370-7192ce94c11e.png)
 
-Unlock the potential of AI-generated NFTs with PixiePop!
+Unlock the potential of AI-generated NFTs with PixiePop!!!!
 
 # What is PixiePop
 
